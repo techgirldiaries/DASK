@@ -1,16 +1,19 @@
 {
-"devDependencies": {
-  "gulp": "latest",
-  "gulp-sass": "latest",
-  "gulp-uglify": "latest",
-  "gulp-rename": "latest",
-  "gulp-notify": "latest",
-  "gulp-minify-css": "latest",
-  "gulp-concat": "latest",
-  "gulp-plumber": "latest",
-  "browser-sync": "latest",
-  "gulp-sourcemaps": "latest",
-  "gulp-autoprefixer": "latest",
-  "gulp-clean-css": "latest"
+  "name": "house-of-dask",
+  "version": "1.0.0",
+  "description": "Beauty, Makeup and Hair Blog Portfolio",
+  "devDependencies": {
+    "browser-sync": "^1.6.5",
+    "gulp": "^5.0.1",
+    "gulp-autoprefixer": "^10.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-notify": "^5.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.1.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.85.0"
   }
 }

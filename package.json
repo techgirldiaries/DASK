@@ -2,6 +2,12 @@
   "name": "house-of-dask",
   "version": "1.0.0",
   "description": "Beauty, Makeup and Hair Blog Portfolio",
+  "scripts": {
+    "build:css": "gulp sass && gulp mergeStyles",
+    "watch": "gulp watch",
+    "dev": "gulp",
+    "check:sass-deprecations": "sass --fatal-deprecation=import scss/style.scss css/style.css --no-source-map"
+  },
   "devDependencies": {
     "browser-sync": "^1.6.5",
     "gulp": "^5.0.1",

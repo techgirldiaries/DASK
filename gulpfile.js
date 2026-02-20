@@ -10,8 +10,30 @@ const plumber = require("gulp-plumber");
 const browserSync = require("browser-sync");
 const reload = browserSync.reload;
 const sourcemaps = require("gulp-sourcemaps");
+const { Transform } = require("stream");
 const autoprefixer =
   require("gulp-autoprefixer").default || require("gulp-autoprefixer");
+
+function sanitizeMergedCss() {
+  return new Transform({
+    objectMode: true,
+    transform(file, _enc, cb) {
+      if (file.isBuffer()) {
+        let content = file.contents.toString();
+
+        content = content
+          .replace(/\/\*# sourceMappingURL=.*?\*\//g, "")
+          .replace(/@charset\s+["'][^"']+["'];?\s*/gi, "")
+          .replace(/''\s*(?=0 1px 4px rgba\(0, 0, 0, 0\.2\))/g, "")
+          .replace(/text-size-adjust:\s*100%\s*;?/g, "");
+
+        file.contents = Buffer.from(content);
+      }
+
+      cb(null, file);
+    },
+  });
+}
 
 /* Concatenate and minify vendor scripts */
 function scripts() {
@@ -76,9 +98,8 @@ function mergeStyles() {
       "css/flexslider.css",
       "css/default-skin.css",
     ])
-    .pipe(concat("styles-merged.css"))
-    .pipe(gulp.dest("css"))
-    .pipe(sourcemaps.write("."))
+    .pipe(sanitizeMergedCss())
+    .pipe(concat("styles-merged.css", { newLine: "\n" }))
     .pipe(gulp.dest("css"))
     .pipe(reload({ stream: true }));
 }
